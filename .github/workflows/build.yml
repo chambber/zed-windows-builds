@@ -79,10 +79,18 @@ jobs:
         shell: pwsh
         run: ./scripts/Parse-Rustflags.ps1 ${{ matrix.rustflags }}
 
+      - name: Install zigbuild
+        working-directory: zed
+        run: cargo install --locked cargo-zigbuild
+        
+      - name: Install zig
+        run: winget install -e --id zig.zig
+        
       - name: Build release
         working-directory: zed
         env:
           ZED_UPDATE_EXPLANATION: "Please use Scoop to update Zed."
+          ZED_BUILD_REMOTE_SERVER: "zigbuild nocompress"
         run: cargo build --release
 
       - name: Archive build
