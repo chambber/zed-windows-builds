@@ -84,7 +84,7 @@ jobs:
         run: cargo install --locked cargo-zigbuild
 
       - name: Install zig
-        run: winget install -e --id zig.zig
+        run: winget install -e --accept-source-agreements --accept-package-agreements --id zig.zig
         
       - name: Build release
         working-directory: zed
