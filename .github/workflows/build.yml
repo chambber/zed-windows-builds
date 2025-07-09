@@ -24,7 +24,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: windows-2025
     strategy:
       matrix:
         backend: [vulkan, opengl]
@@ -82,12 +82,6 @@ jobs:
       - name: Install zigbuild
         working-directory: zed
         run: cargo install --locked cargo-zigbuild
-        
-      - name: Install winget
-        uses: Cyberboss/install-winget@v1
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          wget_release_id: latest
 
       - name: Install zig
         run: winget install -e --id zig.zig
